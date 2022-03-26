@@ -1,5 +1,12 @@
 import json
 
+def read_json(filename):
+    with open(filename, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+posts = read_json('data/posts.json')
+comments = read_json('data/comments.json')
+
 # Получаем подсчет комментариев для шага 1
 # Используем для вывод нужных постов шага 2
 
@@ -15,8 +22,8 @@ def get_post():
 
 def get_for_post(post_id):
     posts_for_post = []
-    with open("data/posts.json", "r", encoding="utf-8") as file:
-        posts = json.load(file)
+    # with open("data/posts.json", "r", encoding="utf-8") as file:
+    #     posts = json.load(file)
     for post in posts:
         if post.get("pk") == post_id:
             posts_for_post.append(post)
@@ -27,8 +34,8 @@ def get_for_post(post_id):
 
 def get_comment_for_post(post_id):
     comments_for_post = []
-    with open("data/comments.json", "r", encoding="utf-8") as file:
-        comments = json.load(file)
+    # with open("data/comments.json", "r", encoding="utf-8") as file:
+    #     comments = json.load(file)
     for comment in comments:
         if comment.get("post_id") == post_id:
             comments_for_post.append(comment)
@@ -37,8 +44,8 @@ def get_comment_for_post(post_id):
 #*** Выполняем поиск  *** (Шаг 3)
 
 def posts_search_by_word(s):
-    with open("data/posts.json", "r", encoding="utf-8") as file:
-        posts = json.load(file)
+    # with open("data/posts.json", "r", encoding="utf-8") as file:
+    #     posts = json.load(file)
     post_match = []
     if s:
         post_match = [x for x in posts if s in x.get('content').lower()]
@@ -49,8 +56,8 @@ def posts_search_by_word(s):
 
 def show_user(username):
     show_user = []
-    with open("data/posts.json", "r", encoding="utf-8") as file:
-        posts = json.load(file)
+    # with open("data/posts.json", "r", encoding="utf-8") as file:
+    #     posts = json.load(file)
     for user in posts:
         if user.get("poster_name") == username:
             show_user.append(user)
